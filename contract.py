@@ -342,7 +342,7 @@ def CreateContract():
             indoc = Document(infile)
             text = [p.text for p in indoc.paragraphs]
             
-            outfile = outdir + f"{today}_{contract_type.strip().lower()}_{clientname}.docx"
+            outfile = f"{today}_{contract_type.strip().lower()}_{clientname}.docx"
             
             status.update(label="Preparing Contract ...", state="running")
             time.sleep(1)
@@ -453,7 +453,7 @@ def CreateContract():
             status.update(label="Converting Contract Document to PDF...", state="running")
             time.sleep(1)
             
-#            outpdf = outdir + f"{today}_{contract_type.strip().lower()}_{clientname}.pdf" uncomment from Render SRI
+#            outpdf = f"{today}_{contract_type.strip().lower()}_{clientname}.pdf" uncomment from Render SRI
 #            convert_docx_to_pdf(outfile,outpdf)
 
             status.update(label="Contract Successfully Created !!!", state="complete")
@@ -462,3 +462,4 @@ def CreateContract():
 def main():
 
     CreateContract()
+
