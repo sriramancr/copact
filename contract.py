@@ -463,5 +463,4 @@ def CreateContract():
             st.session_state.totaldownloads+=1
 
 def main():
-
     CreateContract()
