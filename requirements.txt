@@ -5,5 +5,7 @@ pillow
 keyboard
 psutil
 python-docx
+num2words
+
 
 
