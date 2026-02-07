@@ -1,0 +1,14 @@
+streamlit
+streamlit-extras
+streamlit-option-menu
+datetime
+time
+pillow
+os
+keyboard
+psutil
+python-docx
+re
+num2words
+contract
+aboutus
