@@ -5,7 +5,5 @@ pillow
 keyboard
 psutil
 python-docx
-contract
-aboutus
 
 
