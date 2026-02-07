@@ -18,9 +18,6 @@ if "infile" not in st.session_state:
 if "totaldownloads" not in st.session_state:
     st.session_state.totaldownloads = 0
 
-indir = "D:/crs/ns/civil/v5_nosave/beta/in/"
-outdir = "D:/crs/ns/civil/v5_nosave/beta/out/"
-
 infiletext = None
 dct_infile = {"costplus":  "costplus.docx", "itemwise": "itemwise.docx", "lumpsum": "lumpsum.docx"}
 
@@ -332,7 +329,7 @@ def CreateContract():
             
         st.session_state.replacements = replacements
         
-        infile = indir + dct_infile[contract_type.strip().lower() ]
+        infile = dct_infile[contract_type.strip().lower() ]
         st.session_state.infile = infile
 
         with st.status("Initializing Contract Document preparation. Please wait ... ", expanded=True) as status:
@@ -463,4 +460,5 @@ def CreateContract():
             st.session_state.totaldownloads+=1
 
 def main():
+
     CreateContract()
