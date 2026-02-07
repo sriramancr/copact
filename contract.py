@@ -5,7 +5,6 @@ from docx import Document
 import datetime,time
 from docx.enum.text import WD_ALIGN_PARAGRAPH,WD_BREAK
 from docx.shared import Pt
-from docx2pdf import convert
 import re
 from num2words import num2words
 
@@ -464,4 +463,5 @@ def CreateContract():
             st.session_state.totaldownloads+=1
 
 def main():
+
     CreateContract()
