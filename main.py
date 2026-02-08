@@ -25,7 +25,8 @@ now = datetime.datetime.now()
 c1.image(Image.open(bg))
 c1.caption(now.strftime('%A') + ", " + now.strftime("%dth %B, %Y"))
 
-c1.caption("📊 Total Downloads today : " + str(contract.st.session_state.totaldownloads))
+# c1.caption("📊 Total Downloads today : " + str(contract.st.session_state.totaldownloads))
+c1.caption("📊 Total Downloads today : " + str(st.session_state["totaldownloads"]))
 
 t1,t2,t3 = c2.tabs(["Create Contract", "About Us", "Quit"])
 
@@ -50,4 +51,5 @@ with t3:
             keyboard.press_and_release('ctrl+w')
             pid = os.getpid()
             p = psutil.Process(pid)
+
             p.terminate()
