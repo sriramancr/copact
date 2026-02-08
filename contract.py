@@ -82,7 +82,7 @@ def send_email_resend(to_email, subject, text):
             ret = "SUCCESS: " + response.json()
     
     except Exception as e:
-        ret = "EXCEPTION: + str(e)    
+        ret = "EXCEPTION: " + str(e)    
 
     return(ret)
     
@@ -437,6 +437,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
