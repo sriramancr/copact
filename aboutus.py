@@ -22,8 +22,9 @@ def main():
     CoPact is provided subject to the terms and conditions outlined in the applicable license agreement. All third-party trademarks, product names, and logos referenced, if any, are the property of their respective owners
 
     For any comments / queries regarding the product or its use, please write to
-    admin@copact.in
+    drsunder2025@outlook.com
     '''
 
     st.subheader("CoPact ©")
+
     st.write(msg)
