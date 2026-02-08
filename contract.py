@@ -63,6 +63,8 @@ currencies = [ "INR - Indian Rupees", "AED - United Arab Emirates Dirham", "AFN 
 # Send an email to track count of downloads
 def send_email_resend(to_email, subject, text):
     try:
+        ret = []
+        
         api_key = os.environ["RESEND_API_KEY"]
         response = requests.post(
             "https://api.resend.com/emails",
@@ -79,12 +81,12 @@ def send_email_resend(to_email, subject, text):
         )
     
         if response.status_code != 200:
-            ret = f"ERROR: Email failed ❌ : {response.text}"
+            ret.extend(["ERROR", f"Email failed ❌ : {response.text}"])
         else:
-            ret = "SUCCESS: " + response.json()
+            ret.extend(["SUCCESS", response.json()])
     
     except Exception as e:
-        ret = "EXCEPTION: " + str(e)    
+        ret.extend(["EXCEPTION", str(e)])  
 
     return(ret)
     
@@ -441,6 +443,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
