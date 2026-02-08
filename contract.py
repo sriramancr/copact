@@ -229,7 +229,7 @@ def CreateContract():
             return
         
         replacements = { 
-            "[contractname]": "<B>"+contractname+"</B>",
+            # "[contractname]": "<B>"+contractname+"</B>",
             "[contractdate]": "<B>"+contractdate+"</B>", 
             "[clientname]": "<B>"+clientname+"</B>", 
             "[clientaddress]": "<B>"+clientaddress+"</B>", 
@@ -405,6 +405,7 @@ def CreateContract():
 def main():
 
     CreateContract()
+
 
 
 
