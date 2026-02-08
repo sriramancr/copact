@@ -17,7 +17,7 @@ if "infile" not in st.session_state:
     st.session_state.infile = None
 
 if "totaldownloads" not in st.session_state:
-    st.session_state.totaldownloads = 0
+    st.session_state["totaldownloads"] = 0
 
 infiletext = None
 dct_infile = {"costplus":  "costplus.docx", "itemwise": "itemwise.docx", "lumpsum": "lumpsum.docx"}
@@ -158,7 +158,7 @@ def CreateContract():
     
     with st.expander("Contract Conditions and Parties"):
         c1,c2 = st.columns([0.8,0.2])
-        contractname = c1.text_input("Contract Name", max_chars=50,value="Default Contract")
+        # contractname = c1.text_input("Contract Name", max_chars=50,value="Default Contract")
         contractdate = c2.date_input("Contract Date",format="DD/MM/YYYY")
         contractdate = contractdate.strftime("%d/%m/%Y")
         
@@ -400,10 +400,11 @@ def CreateContract():
                                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document", )
 
             
-            st.session_state.totaldownloads+=1
+            st.session_state["totaldownloads"]+=1
 
 def main():
 
     CreateContract()
+
 
 
