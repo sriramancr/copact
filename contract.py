@@ -7,6 +7,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH,WD_BREAK
 from docx.shared import Pt
 import re
 from num2words import num2words
+from io import BytesIO
 
 # -----------------------
 # session state variables
@@ -147,69 +148,6 @@ def AddDataToTable(outdoc,txt):
 def Spaces():
     st.markdown(""" <hr style = "margin-top: -1tpx; margin-bottom: 0px; } </style> """, unsafe_allow_html=True)
     
-def convert_docx_to_pdf(docx_path: str, pdf_path: str):
-    """
-    Converts a DOCX file to PDF using Microsoft Word (Windows only).
-    Safely handles COM initialization issues (CoInitialize error).
-
-    Requirements:
-        - Windows OS
-        - Microsoft Word installed
-        - pip install pywin32
-    """
-
-    import os
-    import pythoncom
-    import win32com.client
-    from pathlib import Path
-
-    docx_path = Path(docx_path).resolve()
-    pdf_path = Path(pdf_path).resolve()
-
-    if not docx_path.exists():
-        raise FileNotFoundError(f"DOCX file not found: {docx_path}")
-
-    word = None
-    doc = None
-
-    try:
-        # 🔹 CRITICAL: Initialize COM explicitly
-        pythoncom.CoInitialize()
-
-        # 🔹 Create isolated Word instance (important for Streamlit)
-        word = win32com.client.DispatchEx("Word.Application")
-        word.Visible = False
-        word.DisplayAlerts = 0  # Disable alerts
-
-        doc = word.Documents.Open(str(docx_path))
-        
-        # 17 = wdFormatPDF
-        doc.SaveAs(str(pdf_path), FileFormat=17)
-
-    except Exception as e:
-        raise RuntimeError(f"DOCX → PDF conversion failed: {e}")
-
-    finally:
-        # 🔹 Clean shutdown sequence (prevents zombie WINWORD.EXE)
-        try:
-            if doc:
-                doc.Close(False)
-        except Exception:
-            pass
-
-        try:
-            if word:
-                word.Quit()
-        except Exception:
-            pass
-
-        # 🔹 Always uninitialize COM
-        try:
-            pythoncom.CoUninitialize()
-        except Exception:
-            pass
-
-    
 def CreateContract():
     Spaces()
     
@@ -283,8 +221,7 @@ def CreateContract():
         country = c1.text_input("Governing Country", max_chars=100,value="India")
         jurisdictioncity = c2.text_input("Jurisdiction City", max_chars=100,value="City")
         
-
-    btn_create = st.button(":page_with_curl:",help="Save and Download Contract")
+    btn_create = st.button(":page_with_curl:",help="Prepare Contract")
 
     if btn_create:
         if contract_type == "Please Select":
@@ -445,21 +382,28 @@ def CreateContract():
                                     else:
                                         R.bold = False
 
-#            outdoc.save(outfile) uncomment from Render SRI
-
-            status.update(label="Contract document preparation complete...", state="running")
+            status.update(label="Contract created successfully!!!", state="complete")
             time.sleep(1)
-            
-            status.update(label="Converting Contract Document to PDF...", state="running")
-            time.sleep(1)
-            
-#            outpdf = f"{today}_{contract_type.strip().lower()}_{clientname}.pdf" uncomment from Render SRI
-#            convert_docx_to_pdf(outfile,outpdf)
 
-            status.update(label="Contract Successfully Created !!!", state="complete")
+            # dont save a physical copy of the file. Store in the memory
+            buffer = BytesIO()
+            outdoc.save(buffer)
+            buffer.seek(0)
+            
+            # download filename
+            download_file = f"{today}_{contract_type.strip().lower()}_{clientname}.docx"
+            
+            btn_download = st.download_button(  label="Download Contract", 
+                                                icon=":material/download:", 
+                                                data=buffer,
+                                                file_name=download_file,
+                                                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document", )
+
+            
             st.session_state.totaldownloads+=1
 
 def main():
 
     CreateContract()
+
 
