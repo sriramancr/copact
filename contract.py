@@ -16,8 +16,8 @@ from io import BytesIO
 if "infile" not in st.session_state:
     st.session_state.infile = None
 
-if "totaldownloads" not in st.session_state:
-    st.session_state["totaldownloads"] = 0
+# if "totaldownloads" not in st.session_state:
+#    st.session_state["totaldownloads"] = 0
 
 infiletext = None
 dct_infile = {"costplus":  "costplus.docx", "itemwise": "itemwise.docx", "lumpsum": "lumpsum.docx"}
@@ -405,6 +405,7 @@ def CreateContract():
 def main():
 
     CreateContract()
+
 
 
 
