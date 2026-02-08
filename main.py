@@ -43,18 +43,17 @@ with t2:
 with t3:
     st.subheader("Are you sure you want to terminate this session ?")
     st.write("\n")
-    c1,c2 = st.columns(2)
-    btn_close = c1.button("✅",help="Close Application")
-    
-    if btn_close:    
-        with (st.spinner("Closing application ...")):
+
+    c1, c2 = st.columns(2)
+    btn_close = c1.button("✅", help="Close Application")
+
+    if btn_close:
+        with st.spinner("Closing application ..."):
             time.sleep(2)
-                
-            import keyboard,psutil
-            
-            keyboard.press_and_release('ctrl+w')
-            pid = os.getpid()
-            p = psutil.Process(pid)
 
-            p.terminate()
+            # Clear session state
+            for key in list(st.session_state.keys()):
+                del st.session_state[key]
 
+        st.success("Session closed. You can safely close the browser tab.")
+        st.stop()
