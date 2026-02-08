@@ -11,6 +11,10 @@ from PIL import Image
 import contract, aboutus
 import os
 
+# session variables
+if "totaldownloads" not in st.session_state:
+    st.session_state["totaldownloads"] = 0
+
 st.set_page_config(layout='wide')
 
 st.markdown(""" <style> div.block-container {padding-top: 3rem; padding-bottom: 1rem; } </style> """, unsafe_allow_html=True)
@@ -53,3 +57,4 @@ with t3:
             p = psutil.Process(pid)
 
             p.terminate()
+
