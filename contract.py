@@ -435,8 +435,11 @@ def CreateContract():
             text = "Contracted downloaded"
             email_status = send_email_resend(to_email, subject, text)
 
+            st.write("Email status = ", email_status)
+
 def main():
     CreateContract()
+
 
 
 
