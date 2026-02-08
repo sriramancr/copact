@@ -159,7 +159,7 @@ def CreateContract():
     with st.expander("Contract Conditions and Parties"):
         c1,c2 = st.columns([0.8,0.2])
         # contractname = c1.text_input("Contract Name", max_chars=50,value="Default Contract")
-        contractdate = c2.date_input("Contract Date",format="DD/MM/YYYY")
+        contractdate = c1.date_input("Contract Date",format="DD/MM/YYYY")
         contractdate = contractdate.strftime("%d/%m/%Y")
         
         c1,c2 = st.columns([0.3,0.7])
@@ -405,6 +405,7 @@ def CreateContract():
 def main():
 
     CreateContract()
+
 
 
 
