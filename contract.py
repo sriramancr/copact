@@ -9,6 +9,7 @@ import re
 from num2words import num2words
 from io import BytesIO
 import os
+import requests
 
 # -----------------------
 # session state variables
@@ -440,6 +441,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
