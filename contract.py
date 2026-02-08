@@ -58,6 +58,34 @@ currencies = [ "INR - Indian Rupees", "AED - United Arab Emirates Dirham", "AFN 
     "XPF - CFP Franc","YER - Yemeni Rial","ZAR - South African Rand","ZMW - Zambian Kwacha","ZWL - Zimbabwean Dollar"
 ]
 
+# Send an email to track count of downloads
+def send_email_resend(to_email, subject, text):
+    try:
+        api_key = os.environ["RESEND_API_KEY"]
+        response = requests.post(
+            "https://api.resend.com/emails",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json"
+            },
+            json={
+                "from": "onboarding@resend.dev",   # default test sender
+                "to": [to_email],
+                "subject": subject,
+                "text": text
+            }
+        )
+    
+        if response.status_code != 200:
+            ret = f"ERROR: Email failed ❌ : {response.text}"
+        else:
+            ret = "SUCCESS: " + response.json()
+    
+    except Exception as e:
+        ret = "EXCEPTION: + str(e)    
+
+    return(ret)
+    
 # The output document shd have the same page settings as the input document
 def DocSettings(indoc,outdoc):
     
@@ -402,9 +430,14 @@ def CreateContract():
             
             st.session_state["totaldownloads"]+=1
 
-def main():
+            to_email = "copactbeta@gmail.com"
+            subject = "Contract: " + contract_type
+            text = "Contracted downloaded"
+            email_status = send_email_resend(to_email, subject, text)
 
+def main():
     CreateContract()
+
 
 
 
