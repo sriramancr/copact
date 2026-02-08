@@ -6,6 +6,8 @@ keyboard
 psutil
 python-docx
 num2words
+requests
+
 
 
 
