@@ -207,11 +207,11 @@ def CreateContract():
         architectengineer = c3.text_input("Architect/Engineer", max_chars=100,value="Architect")
     
     with st.expander("2.Contract Sum and Payments"):
-        c1,c2,c3,c4 = st.columns(4)
+        c1,c2,c3 = st.columns(3)
         currency = c1.selectbox("Currency", currencies)
-        contractvalue = c2.number_input("Contract Value", min_value=1)
-        markup = c3.number_input("Markup %", min_value=1)
-        
+        contractvalue = c2.number_input("Contract Value (Not Applicable to CostPlus Contract)", min_value=0.0)
+        markup = c3.number_input("Markup % (Applicable Only for CostPlus Contract)", min_value=1)
+            
         c1,c2,c3,c4 = st.columns(4)
         advanceamountfromclient = c1.number_input("Advance Amount from Client")
         paymentprogress = c2.selectbox("Cost Statement submission (Contractor)",["Monthly","Biweekly","Weekly"])
@@ -253,7 +253,8 @@ def CreateContract():
         country = c1.text_input("Governing Country", max_chars=100,value="India")
         jurisdictioncity = c2.text_input("Jurisdiction City", max_chars=100,value="City")
         
-    btn_create = st.button(":page_with_curl:",help="Prepare Contract")
+    # btn_create = st.button(":page_with_curl:",help="Prepare Contract")
+    btn_create = st.button("Prepare Contract", icon="📃",help="Prepare Contract")
 
     if btn_create:
         if contract_type == "Please Select":
@@ -431,18 +432,19 @@ def CreateContract():
                                                 file_name=download_file,
                                                 mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document", )
 
-            
-            st.session_state["totaldownloads"]+=1
+            # removing this feature for now.
+            # st.session_state["totaldownloads"]+=1
 
             to_email = "copactbeta@gmail.com"
             subject = "Contract: " + contract_type
             text = "Contracted downloaded"
             email_status = send_email_resend(to_email, subject, text)
 
-            st.write("Email status = ", email_status)
+            # st.write("Email status = ", email_status)
 
 def main():
     CreateContract()
+
 
 
 
