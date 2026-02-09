@@ -11,7 +11,7 @@ from PIL import Image
 
 def main():
     
-    bg = "D:/crs/ns/civil/v5_nosave/beta/st/bg/aboutus.jpg"
+    bg = "aboutus.jpg"
     
     c1,c2 = st.columns(2)
     
@@ -42,3 +42,4 @@ def main():
     '''
     
     st.caption(msg)
+
