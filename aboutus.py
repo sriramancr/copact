@@ -6,9 +6,27 @@ Created on Sat May 17 10:48:21 2025
 """
 
 import streamlit as st
+from PIL import Image
 
 
 def main():
+    
+    bg = "D:/crs/ns/civil/v5_nosave/beta/st/bg/aboutus.jpg"
+    
+    c1,c2 = st.columns(2)
+    
+    c1.image(Image.open(bg))
+
+    msg = f''' 
+        Most of the standard contracts are too long, which makes people engaging in small projects to work without one in most cases. \n
+        This is a condensed standard form of contract with key clauses required for small projects. \n
+        We believe this will help in the deterrence towards claims and disputes.
+    '''
+
+    c2.write(msg)
+    
+    st.divider()
+    
     msg = f''' 
     Copyright Notice and Proprietary Rights Statement
     © 2026 CoPact. All rights reserved.
@@ -21,10 +39,6 @@ def main():
 
     CoPact is provided subject to the terms and conditions outlined in the applicable license agreement. All third-party trademarks, product names, and logos referenced, if any, are the property of their respective owners
 
-    For any comments / queries regarding the product or its use, please write to
-    drsunder2025@outlook.com
     '''
-
-    st.subheader("CoPact ©")
-
-    st.write(msg)
+    
+    st.caption(msg)
