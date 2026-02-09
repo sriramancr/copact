@@ -232,7 +232,7 @@ def CreateContract():
         
     with st.expander("5.Performance Security and Defects Liability"):
         c1,c2,c3,c4 = st.columns([0.3,0.3,0.3,0.1])
-        holdamount = c1.number_input("Hold Amount", min_value=0)
+        holdamount = c1.number_input("Hold Amount", min_value=0.0)
         retentionperiod = c2.number_input("Retention Period", min_value=0)
         retentionlimit = c3.number_input("Retention Limit (Days)", min_value=0)
         
@@ -444,6 +444,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
