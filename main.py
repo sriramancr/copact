@@ -8,7 +8,7 @@ Created on Sat May 17 10:48:21 2025
 import streamlit as st
 import datetime,time
 from PIL import Image
-import contract, aboutus
+import contract, aboutus, contactus
 import os
 
 # session variables
@@ -17,7 +17,7 @@ import os
 
 st.set_page_config(layout='wide')
 
-st.markdown(""" <style> div.block-container {padding-top: 3rem; padding-bottom: 1rem; } </style> """, unsafe_allow_html=True)
+st.markdown(""" <style> div.block-container {padding-top: 2rem; padding-bottom: 1rem; } </style> """, unsafe_allow_html=True)
 
 bg = "copact-1.jpg"
 now = datetime.datetime.now()
@@ -32,7 +32,7 @@ c1.caption(now.strftime('%A') + ", " + now.strftime("%dth %B, %Y"))
 # c1.caption("📊 Total Downloads today : " + str(contract.st.session_state.totaldownloads))
 # c1.caption("📊 Total Downloads today : " + str(st.session_state["totaldownloads"]))
 
-t1,t2,t3 = c2.tabs(["Create Contract", "About Us", "Quit"])
+t1,t2,t3,t4 = c2.tabs(["Create Contract", "About Us", "Contact Us", "Quit"])
 
 with t1:
     contract.main()
@@ -41,6 +41,9 @@ with t2:
     aboutus.main()
 
 with t3:
+     contactus.main()
+
+with t4:
     st.subheader("Are you sure you want to terminate this session ?")
     st.write("\n")
 
@@ -57,4 +60,3 @@ with t3:
 
         st.success("Session closed. You can safely close the browser tab.")
         st.stop()
-
