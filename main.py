@@ -12,8 +12,8 @@ import contract, aboutus
 import os
 
 # session variables
-if "totaldownloads" not in st.session_state:
-    st.session_state["totaldownloads"] = 0
+# if "totaldownloads" not in st.session_state:
+#    st.session_state["totaldownloads"] = 0
 
 st.set_page_config(layout='wide')
 
@@ -30,7 +30,7 @@ c1.image(Image.open(bg))
 c1.caption(now.strftime('%A') + ", " + now.strftime("%dth %B, %Y"))
 
 # c1.caption("📊 Total Downloads today : " + str(contract.st.session_state.totaldownloads))
-c1.caption("📊 Total Downloads today : " + str(st.session_state["totaldownloads"]))
+# c1.caption("📊 Total Downloads today : " + str(st.session_state["totaldownloads"]))
 
 t1,t2,t3 = c2.tabs(["Create Contract", "About Us", "Quit"])
 
@@ -57,3 +57,4 @@ with t3:
 
         st.success("Session closed. You can safely close the browser tab.")
         st.stop()
+
