@@ -61,11 +61,12 @@ elif st.session_state["tab"] == "Quit":
        with (st.spinner("Closing application ...")):
            time.sleep(2)
 
-            # Clear session state
-            for key in list(st.session_state.keys()):
-                del st.session_state[key]
+           # Clear session state
+           for key in list(st.session_state.keys()):
+               del st.session_state[key]
 
        st.success("Session closed. You can safely close the browser tab.")
        st.stop()
 else:
     pass
+
