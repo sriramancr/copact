@@ -5,8 +5,7 @@
 
 import streamlit as st
 
-date_formats = ["DD-MM-YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "YYYY/MM/DD", "DD.MM.YYYY", "MM-DD-YYYY", 
-                "MM/DD/YYYY", "YYYY-MM-DD", "Mon DD, YYYY", "DD Mon YYYY"]
+date_formats = ["DD-MM-YYYY", "DD/MM/YYYY", "YYYY-MM-DD", "YYYY/MM/DD", "DD.MM.YYYY", "MM-DD-YYYY", "MM/DD/YYYY"]
 
 def main():
     st.divider()
@@ -19,5 +18,6 @@ def main():
     
     if dt_format !=  st.session_state["dateformat"]:
         st.session_state["dateformat"] = dt_format
+
 
     # st.write("after change: session state date format = ", st.session_state["dateformat"])
