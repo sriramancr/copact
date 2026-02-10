@@ -209,7 +209,7 @@ def CreateContract():
     with st.expander("2.Contract Sum and Payments"):
         c1,c2,c3 = st.columns(3)
         currency = c1.selectbox("Currency", currencies)
-        contractvalue = c2.number_input("Contract Value (Not Applicable to CostPlus Contract)", min_value=0.0)
+        contractvalue = c2.number_input("Contract Value (Not Applicable for CostPlus Contract)", min_value=0.0)
         markup = c3.number_input("Markup % (Applicable Only for CostPlus Contract)", min_value=1)
             
         c1,c2,c3,c4 = st.columns(4)
@@ -444,6 +444,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
