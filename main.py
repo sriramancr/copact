@@ -8,7 +8,7 @@ Created on Sat May 17 10:48:21 2025
 import streamlit as st
 import datetime,time
 from PIL import Image
-import contract, home, contactus
+import contract, home, contactus, mysettings
 import os
 
 # session variables
@@ -18,8 +18,11 @@ if "tab" not in st.session_state:
 if "from_homepage" not in st.session_state:
     st.session_state["from_homepage"] = False
 
+if "dateformat" not in st.session_state:
+    st.session_state["dateformat"] = "DD/MM/YYYY"
+
 st.set_page_config(layout='wide')
-st.markdown(""" <style> div.block-container {padding-top: 2rem; padding-bottom: 1rem; } </style> """, unsafe_allow_html=True)
+st.markdown(""" <style> div.block-container {padding-top: 3rem; padding-bottom: 1rem; } </style> """, unsafe_allow_html=True)
 
 bg = "copact-1.jpg"
 now = datetime.datetime.now()
@@ -30,7 +33,7 @@ c1.image(Image.open(bg))
 c1.caption(now.strftime('%A') + ", " + now.strftime("%dth %B, %Y"))
 
 # Page controls
-options = ["Home", "Create Contract", "Contact Us", "Quit"]
+options = ["Home", "Create Contract", "Contact Us", "Settings", "Quit"]
 selection = c2.pills("\t", options, default=st.session_state["tab"])
 
 # Sync selection -> session_state tab
@@ -51,6 +54,8 @@ elif st.session_state["tab"] == "Create Contract":
     contract.main()
 elif st.session_state["tab"] == "Contact Us":
     contactus.main()
+elif st.session_state["tab"] == "Settings":
+    mysettings.main()
 elif st.session_state["tab"] == "Quit":
    st.subheader("Are you sure you want to terminate this session ?")
    st.write("\n")
@@ -69,5 +74,3 @@ elif st.session_state["tab"] == "Quit":
        st.stop()
 else:
     pass
-
-
