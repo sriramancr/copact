@@ -192,7 +192,8 @@ def CreateContract():
         c1,c2 = st.columns([0.8,0.2])
         # contractname = c1.text_input("Contract Name", max_chars=50,value="Default Contract")
         contractdate = c1.date_input("Contract Date",format="DD/MM/YYYY")
-        contractdate = contractdate.strftime("%d/%m/%Y")
+        # contractdate = contractdate.strftime("%d/%m/%Y")
+        contractdate =  contractdate.strftime("%A, %B %d, %Y")
         
         c1,c2 = st.columns([0.3,0.7])
         clientname = c1.text_input("Client Name", max_chars=100,value="MyClient")
@@ -221,7 +222,8 @@ def CreateContract():
     with st.expander("3.Commencement,Progress,Completion"):
         c1,c2,c3 = st.columns(3)
         commencementdate = c1.date_input("Commencement Date", format="DD/MM/YYYY")
-        commencementdate = commencementdate.strftime("%d/%m/%Y")
+        # commencementdate = commencementdate.strftime("%d/%m/%Y")
+        commencementdate = commencementdate.strftime("%A, %B %d, %Y")
         completionperiod = c2.number_input("Completion Period (Days)", min_value=1,value=30)
         termination = c3.number_input("Termination (Days)", min_value=1)
     
@@ -444,6 +446,7 @@ def CreateContract():
 
 def main():
     CreateContract()
+
 
 
 
