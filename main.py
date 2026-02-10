@@ -8,7 +8,7 @@ Created on Sat May 17 10:48:21 2025
 import streamlit as st
 import datetime,time
 from PIL import Image
-import contract, aboutus, contactus
+import contract, home, contactus
 import os
 
 # session variables
@@ -69,4 +69,5 @@ elif st.session_state["tab"] == "Quit":
        st.stop()
 else:
     pass
+
 
