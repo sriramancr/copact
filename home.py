@@ -12,7 +12,7 @@ def main():
     
     st.divider()
     
-    bg = "D:/crs/ns/civil/v5_nosave/beta/st/bg/aboutus-1.jpg"
+    bg = "aboutus-1.jpg"
     
     c1,c2 = st.columns(2)
     
@@ -30,4 +30,5 @@ def main():
     if c1.button("Create my Contract", icon="➕"):
         st.session_state["from_homepage"] = True
         st.rerun()
+
         
